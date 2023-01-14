@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>New Recipe Page</title>
+</head>
+<body class="bg-dark text-info">
+    <nav>
+        <img src="/static/nav_img.jpeg" style="height: 200px; width: 100%;">
+    </nav>
+    <div class="container-fluid d-flex mt-5 justify-content-around">
+        <div>
+            <h1>Create a New Recipe!</h1>
+        </div>
+        <div>
+            <a href="/" class="btn btn-primary m-1">back to recipes</a>
+            <a href="" class="btn btn-primary m-1">logout</a>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center mt-5">
+        <div class="container">
+            <form action="/create/recipe">
+                <div class="mt-2">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <div class="mt-2">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description">
+                </div>
+                <div class="mt-2">
+                    <label for="instructions">Instructions:</label>
+                    <input type="text" name="instructions">
+                </div>
+        </div>
+        <div class="container">
+                <div class="mt-2">
+                    <label for="created_at">Date Cooked/Made:</label>
+                    <input type="date" name="created-at">
+                </div>
+                <div class="mt-2">
+                    <p>Under 30 Minutes?</p>
+                    <input type="radio" name="under_30" id="yes" value="Yes">
+                    <label for="yes">Yes</label>
+                    <input type="radio" name="under_30" id="no" value="No">
+                    <label for="no">No</label>
+                </div>
+                <div class="mt-2">
+                    <input type="submit" value="Submit" class="btn btn-secondary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
