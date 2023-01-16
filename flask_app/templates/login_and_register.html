@@ -14,7 +14,14 @@
     <div class="container d-flex justify-content-between mt-5">
         <div class="container">
             <h2>Register</h2>
-            <form action="/register" method="post">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="text-danger">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/register/user" method="post">
                 <div class="mt-2">
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name">
@@ -42,7 +49,7 @@
         </div>
         <div class="container">
             <h2>Login</h2>
-            <form action="/login" method="post">
+            <form action="/login/user" method="post">
                 <div class="mt-2">
                     <label for="email">Email:</label>
                     <input type="email" name="email">
