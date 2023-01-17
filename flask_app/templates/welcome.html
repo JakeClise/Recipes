@@ -11,7 +11,7 @@
         <img src="/static/nav_img.jpeg" style="height: 200px; width: 100%;">
     </nav>
     <div class="container-fluid justify-content-start mt-2">
-        <h1>Welcome {{user}}!</h1>
+        <h1>Welcome {{user.first_name}}!</h1>
     </div>
     <div class="container-fluid d-flex justify-content-between mt-2">
         <div>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>Spaghetti</td>
                         <td>Yes</td>
-                        <td>{{user}}</td>
+                        <td>{{user.first_name}}</td>
                         <td><a href="/view">View |</a> <a href="/edit">Edit |</a> <a href="/delete">Delete</a></td>
                     </tr>
                 </tbody>

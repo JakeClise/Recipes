@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
+from flask_bcrypt import Bcrypt
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.t_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -37,10 +38,10 @@ class User:
     
 
     @classmethod
-    def save(query, data):
+    def save(cls, data):
         query = """
-            INSERT INTO users (first_name, last_name, email)
-            VALUES (%(first_name)s, %(last_name)s, %(email)s);
+            INSERT INTO users (first_name, last_name, email, password)
+            VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);
         """
         return connectToMySQL('users_recipes').query_db(query, data)
 
@@ -53,3 +54,11 @@ class User:
         if len(result) < 1: 
             return False
         return cls (result[0])
+    
+    @classmethod 
+    def get_by_id(cls, data):
+        query = """
+            SELECT * FROM users WHERE id = %(id)s;
+        """
+        result = connectToMySQL('users_recipes').query_db(query, data)
+        return cls(result[0])
