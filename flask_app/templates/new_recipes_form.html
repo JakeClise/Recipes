@@ -21,7 +21,7 @@
     </div>
     <div class="container d-flex justify-content-center mt-5">
         <div class="container">
-            <form action="/create/recipe">
+            <form action="/create/recipe" method="post">
                 <div class="mt-2">
                     <label for="name">Name:</label>
                     <input type="text" name="name">
@@ -38,14 +38,14 @@
         <div class="container">
                 <div class="mt-2">
                     <label for="created_at">Date Cooked/Made:</label>
-                    <input type="date" name="created-at">
+                    <input type="date" name="date_cooked">
                 </div>
                 <div class="mt-2">
                     <p>Under 30 Minutes?</p>
-                    <input type="radio" name="under_30" id="yes" value="Yes">
-                    <label for="yes">Yes</label>
-                    <input type="radio" name="under_30" id="no" value="No">
-                    <label for="no">No</label>
+                    <input type="radio" name="under_30" id="under_30_yes" value="1">
+                    <label for="under_30_yes">Yes</label>
+                    <input type="radio" name="under_30" id="under_30_no" value="0">
+                    <label for="under_30_no">No</label>
                 </div>
                 <div class="mt-2">
                     <input type="submit" value="Submit" class="btn btn-secondary">

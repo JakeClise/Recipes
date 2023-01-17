@@ -3,6 +3,7 @@ from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 from flask import render_template, redirect, request, session, flash
 from flask_app.models.user import User
+from flask_app.models.recipe import Recipe
 
 
 
@@ -48,14 +49,12 @@ def welcome_user():
     data = {
         'id': session['user_id']
     }
-    return render_template('welcome.html', user = User.get_by_id(data))
+    return render_template('welcome.html', user = User.get_by_id(data), recipes = Recipe.get_all())
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
 
-@app.route('/recipes/new')
-def new_recipes_form():
-    return render_template('new_recipes_form.html')
+
 

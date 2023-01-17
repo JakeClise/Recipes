@@ -33,12 +33,20 @@
                     </tr>
                 </thead>
                 <tbody class="text-light">
+                    {% for recipe in recipes %}
                     <tr>
-                        <td>Spaghetti</td>
-                        <td>Yes</td>
-                        <td>{{user.first_name}}</td>
+                        <td>{{recipe.name}}</td>
+                        <td>
+                            {% if recipe.under_30 == 1 %}
+                                <p>Yes</p>
+                                {% else %}
+                                <p>No</p>
+                            {% endif %}
+                        </td>
+                        <td>{{recipe.creator.first_name}}</td>
                         <td><a href="/view">View |</a> <a href="/edit">Edit |</a> <a href="/delete">Delete</a></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
         </table>
     </div>

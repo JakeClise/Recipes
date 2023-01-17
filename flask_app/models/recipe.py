@@ -14,6 +14,7 @@ class Recipe:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
+        self.creator = None
 
     @classmethod
     def save(cls, data):
@@ -22,3 +23,26 @@ class Recipe:
             VALUES  (%(name)s, %(description)s, %(instruction)s, %(date_cooked)s, %(under_30)s, %(user_id)s);
         """
         return connectToMySQL('users_recipes').query_db(query, data)
+    
+    @classmethod
+    def get_all(cls):
+        query = """
+            SELECT * FROM recipes
+            JOIN users on recipes..user_id = users.id;
+        """
+        results = connectToMySQL('users_recipes').query_db(query)
+        recipes = []
+        for row in results:
+            this_recipe = cls(row)
+            data = {
+                "id": row['users.id'], 
+                "first_name": row['first_name'], 
+                "last_name": row['last_name'],
+                "email": row['email'], 
+                "password": "",
+                "created_at": row['users.created_at'],
+                "updated_at": row['users.updated_at']
+            }
+            this_recipe.creator = user.User(data)
+            recipes.append(this_recipe)
+        return recipes
