@@ -5,6 +5,7 @@ from flask import render_template, redirect, request, session, flash
 from flask_app.models.user import User
 
 
+
 @app.route('/')
 def home():
     return render_template('login_and_register.html')
@@ -54,11 +55,7 @@ def logout():
     session.clear()
     return redirect('/')
 
-
 @app.route('/recipes/new')
 def new_recipes_form():
     return render_template('new_recipes_form.html')
 
-@app.route('/create/recipe', methods = ["POST"])
-def save_recipe():
-    pass
