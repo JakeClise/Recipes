@@ -35,6 +35,7 @@ def edit_recipe(id):
 @app.route('/update/<int:id>', methods = ["POST"])
 def update_recipe(id):
     recipe_data = {
+        "id": id,
         'user_id': session['user_id'], 
         'name': request.form['name'],
         'description': request.form['description'], 

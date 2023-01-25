@@ -56,7 +56,7 @@ class Recipe:
         results = connectToMySQL('users_recipes').query_db(query, data)
         one_recipe = cls(results[0])
         user_data = {
-            "id":results[0] ['users_id'],
+            "id":results[0]['users.id'],
             "first_name":results[0]['first_name'],
             "last_name":results[0]['last_name'],
             "email":results[0]['email'],
