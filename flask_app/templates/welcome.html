@@ -44,7 +44,7 @@
                             {% endif %}
                         </td>
                         <td>{{recipe.creator.first_name}}</td>
-                        <td><a href="/view">View |</a> <a href="/edit">Edit |</a> <a href="/delete">Delete</a></td>
+                        <td><a href="/view/{{recipe.id}}">View |</a> <a href="/edit/{recipe.id}}">Edit |</a> <a href="/delete/{{recipe.id}}">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -46,3 +46,33 @@ class Recipe:
             this_recipe.creator = user.User(user_data)
             recipes.append(this_recipe)
         return recipes
+    
+    @classmethod
+    def get_one_recipe_with_user(cls, data):
+        query = """
+            SELECT * FROM recipes JOIN users ON recipes.user_id = users.id
+            WHERE recipes.id = %(id)s;
+        """
+        results = connectToMySQL('users_recipes').query_db(query, data)
+        one_recipe = cls(results[0])
+        user_data = {
+            "id":results[0] ['users_id'],
+            "first_name":results[0]['first_name'],
+            "last_name":results[0]['last_name'],
+            "email":results[0]['email'],
+            "password":results[0]['password'],
+            "created_at":results[0]['users.created_at'],
+            "updated_at":results[0]['users.updated_at']
+        }
+        one_recipe.creator = user.User(user_data)
+        return one_recipe
+
+    @classmethod
+    def update_recipe(cls,data):
+        query = """
+            UPDATE recipes SET name = %(name)s, description = %(description)s, 
+            instructions = %(instructions)s, date_cooked = %(date_cooked)s, 
+            under_30 = %(under_30)s
+            WHERE recipes.id = %(id)s;
+        """
+        return connectToMySQL('users_recipes').query_db(query, data)
