@@ -46,3 +46,11 @@ def update_recipe(id):
     Recipe.update_recipe(recipe_data)
     return redirect('/welcome')
 
+@app.route('/delete/<int:id>')
+def delete_recipe(id):
+    recipe_id = {
+        "id": id
+    }
+    Recipe.delete_recipe(recipe_id)
+    return redirect('/welcome')
+

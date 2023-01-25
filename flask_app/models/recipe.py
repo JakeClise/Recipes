@@ -76,3 +76,8 @@ class Recipe:
             WHERE recipes.id = %(id)s;
         """
         return connectToMySQL('users_recipes').query_db(query, data)
+
+    @classmethod
+    def delete_recipe(cls, data):
+        query = "DELETE FROM recipes WHERE recipes.id = %(id)s;"
+        return connectToMySQL('users_recipes').query_db(query, data)
