@@ -20,7 +20,7 @@ class Recipe:
     def save(cls, data):
         query = """
             INSERT INTO recipes (name, description, instructions, date_cooked, under_30, user_id)
-            VALUES  (%(name)s, %(description)s, %(instruction)s, %(date_cooked)s, %(under_30)s, %(user_id)s);
+            VALUES  (%(name)s, %(description)s, %(instructions)s, %(date_cooked)s, %(under_30)s, %(user_id)s);
         """
         return connectToMySQL('users_recipes').query_db(query, data)
     
@@ -28,13 +28,13 @@ class Recipe:
     def get_all(cls):
         query = """
             SELECT * FROM recipes
-            JOIN users on recipes..user_id = users.id;
+            JOIN users on recipes.user_id = users.id;
         """
         results = connectToMySQL('users_recipes').query_db(query)
         recipes = []
         for row in results:
             this_recipe = cls(row)
-            data = {
+            user_data = {
                 "id": row['users.id'], 
                 "first_name": row['first_name'], 
                 "last_name": row['last_name'],
@@ -43,6 +43,6 @@ class Recipe:
                 "created_at": row['users.created_at'],
                 "updated_at": row['users.updated_at']
             }
-            this_recipe.creator = user.User(data)
+            this_recipe.creator = user.User(user_data)
             recipes.append(this_recipe)
         return recipes
